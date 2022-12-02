@@ -1,0 +1,8 @@
+.CustomizeTaskContainer {
+    background-color: white;
+    padding: 6rem;
+    border-radius: 5px;
+    pointer-events: all;
+    display: flex;
+    flex-direction: column;
+}

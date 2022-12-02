@@ -1,0 +1,6 @@
+.CalendarPageContainer {
+    display: flex;
+    width: 100vw;
+    margin: 0 auto;
+    padding-top: 8rem;
+}

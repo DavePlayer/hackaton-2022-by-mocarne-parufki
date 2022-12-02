@@ -1,19 +1,20 @@
 import LoginPage from "../Pages/Login"
 import create from "zustand"
+import { useCookies } from "react-cookie"
+import { useState } from "react"
+import useJWTStore from "../Store/JWTStore"
 
 interface AuthProviderInterface {
-    children: JSX.Element
+    children: JSX.Element[]
 }
 
-const useJWTStore = create((set) => ({
-  jwt: "",
-  setJWT: () => set((state: any) => ({ jwt: state })),
-  removeJWT: () => set(() => ({ jwt: ""}))
-}))
+const useAuth = () => {
+    const [cookies, setCookie, removeCookie] = useCookies()
+    return cookies["jwt"] != undefined
+}
 
-const AuthProvider: React.FC<AuthProviderInterface> = ({children}: {children: JSX.Element}) => {
-    
-    const auth = false;
+const AuthProvider: React.FC<AuthProviderInterface> = ({children}) => {
+    const auth = useAuth()
     if (!auth) {
         return <LoginPage />
     }
