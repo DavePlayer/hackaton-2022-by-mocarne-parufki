@@ -1,0 +1,29 @@
+
+  type Query {
+    hello: String
+    developers: [worker]!
+  }
+  type worker {
+    id: ID!
+    role: String!
+    userName: String!
+    lastName: String!
+    projectTasks: [task]!
+    assignedTasks: [task]!
+  }
+  type task {
+    id: ID!
+    type: String!
+    projectId: ID!
+    developerId: ID
+    TimeToComplete: String!
+    TimeItTook: String
+    private: Boolean!
+    IsPermanent: Boolean!
+  }
+  type project {
+    id: ID!
+    tasksId: [task]!
+    group: ID!
+    deadLine: String!
+  }
