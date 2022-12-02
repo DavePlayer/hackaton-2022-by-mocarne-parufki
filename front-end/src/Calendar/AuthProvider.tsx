@@ -5,11 +5,9 @@ interface AuthProviderInterface {
 }
 
 const AuthProvider: React.FC<AuthProviderInterface> = ({children}: {children: JSX.Element}) => {
-    const auth = true;
+    const auth = false;
     if (!auth) {
-        return (
-            <LoginPage />
-        )
+        return <LoginPage />
     }
     return (
         <>
