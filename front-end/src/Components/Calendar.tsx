@@ -87,13 +87,13 @@ const Calendar: React.FC<CalendarComponentInterface> = ({editTask}) => {
             <table style={{borderSpacing: "0"}}>
                 <thead>
                     <tr>
-                        <th>monday</th>
-                        <th>tuesday</th>
-                        <th>wednesday</th>
-                        <th>thrusday</th>
-                        <th>friday</th>
-                        <th>saturday</th>
-                        <th>sunday</th>
+                        <th>Poniedziałek</th>
+                        <th>Wtorek</th>
+                        <th>Środa</th>
+                        <th>Czwartek</th>
+                        <th>Piątek</th>
+                        <th>Sobota</th>
+                        <th>Niedziela</th>
                     </tr>
                 </thead>
                 <tbody style={{}}>

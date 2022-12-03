@@ -1,13 +1,21 @@
 .CalendarPageContainer {
-    margin: 0 auto;
-    max-width: 1240px;
+    margin: 0 0 auto 0;
     display: flex;
     flex-direction: column;
 }
-.SidePanel {
+.SidePanelLeft {
+    min-width: 17.5rem;
+    padding: 2rem;
+    background-color: grey;
+    max-height: 100vh;
+}
+
+.SidePanelRight {
     min-width: 8rem;
     padding: 2rem;
     background-color: grey;
+    max-height: 100vh;
+   /*margin-left: 10%;*/
 }
 .topPanel {
     min-height: 6rem;
@@ -17,5 +25,5 @@
     flex-direction: row ;
 }
 .SidePanelExpanded {
-    width: 200px;
+    width: 300px;
 }
