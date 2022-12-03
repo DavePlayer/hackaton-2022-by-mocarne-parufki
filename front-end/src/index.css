@@ -50,7 +50,9 @@ th {
 }
 
 select.lista1 {
-  background-color: #6c757d;
+  background-color: transparent;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .columns-bottom {

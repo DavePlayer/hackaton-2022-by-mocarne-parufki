@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import "./WrapperStyle.css"
 export interface taskInterface {
        date: String,
        TimeItTook: String,
@@ -19,13 +19,13 @@ export const WraperForUnsignedTasks: React.FC<{task: taskInterface, close: React
     return (
         <article className='wrapper'>
             <form onSubmit={(e) => e.preventDefault()} className='wrapper-editor'>
-                <input type="number" value={data.shouldTake} style={{width: "10%"}} onChange={(e) => setData({...data, shouldTake: parseInt(e.target.value)})} />
-                <input type="text" style={{width: "70%"}} value={data.type as string} onChange={(e) => setData({...data, type: e.target.value})} />
+                Time for the task:<input type="number" className="hours" value={data.shouldTake} style={{width: "10%"}} onChange={(e) => setData({...data, shouldTake: parseInt(e.target.value)})} />hours
+                <input type="text" className="taskname" style={{width: "70%"}} value={data.type as string} onChange={(e) => setData({...data, type: e.target.value})} />
                 <section style={{width: "87%"}}>
-                    <button style={{width: "30%"}} onClick={ () => close(false) }>Add to your callendar?</button>
+                    <button style={{width: "30%"}} className="addToCallendar" onClick={ () => close(false) }>Add to your callendar?</button>
                 </section>
-                <button style={{width: "25%"}} onClick={ () => close(false) }>Close</button>
-                <button style={{width: "25%"}}>Save</button>
+                <button style={{width: "25%"}} className="close" onClick={ () => close(false) }>Close</button>
+                <button style={{width: "25%"}} className="save">Save</button>
                 <button style={{width: "25%"}}>AddToExecute</button>
             </form>
         </article>
