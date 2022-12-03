@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+$textcolor:rgb(218, 214, 208);
+$inputbackground: #484b4e;
+$margin: 2%;
+$fieldwidth: 20%;
+
+body, html{
+    background-color: #212529;
+    width: 100%;
+    height: 100%;
+    color: $textcolor;
+}
+
+.form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginlogo{
+    width: 10%;
+    margin-left: $margin*2.5;
+    margin-top: $margin*2;
+}
+
+.projectname{
+    margin-top: $margin;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $margin;
+    font-size: 26px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.fieldname{
+    margin-top: $margin;
+}
+
+.login_input{
+    width: $fieldwidth;
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: $inputbackground;
+    color: $textcolor;
+}
+
+.login_input:focus, .login_input:hover{
+    background-color: #595c5f;
+}
+
+.submit_button{
+    margin-top: $margin;
+    width: $fieldwidth/2.5;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $inputbackground;
+    color: $textcolor;
+    font-weight: bold;
+}
+
+.submit_button:hover{
+    background-color: invert($color: $inputbackground);
+    color: invert($color: $textcolor);
+    border: 2px black solid;
+}

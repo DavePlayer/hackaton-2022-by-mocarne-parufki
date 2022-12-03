@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { useCookies } from "react-cookie"
 import useJWTStore from "../Store/JWTStore"
+import "../../static/Login.css"
 
 const LoginPage: React.FC<{}> = () => {
     const inputFormRef = useRef<HTMLInputElement>(null)
@@ -16,15 +17,14 @@ const LoginPage: React.FC<{}> = () => {
         }
     }
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column"
-        }}>
-            login:
-            <input ref={inputFormRef}></input>
-            password:
-            <input ref={passwdFormRef}></input>
-            <button onClick={sendAuthRequest}>submit</button>
+        <div className="form">
+            <img src="../../static/temp_logo.png" className="loginlogo"/>
+            <p className="projectname">~~INSERT NAME HERE~~</p>
+            <p className="fieldname">Login:</p>
+            <input ref={inputFormRef} className="login_input"></input>
+            <p className="fieldname">Password:</p>
+            <input ref={passwdFormRef} className="login_input"></input>
+            <button onClick={sendAuthRequest} className="submit_button">submit</button>
         </div>
     )
 }
