@@ -5,7 +5,7 @@ import { useState } from "react"
 import useJWTStore from "../Store/JWTStore"
 
 interface AuthProviderInterface {
-    children: JSX.Element[]
+    children: JSX.Element
 }
 
 const useAuth = () => {

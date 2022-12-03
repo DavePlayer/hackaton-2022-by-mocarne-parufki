@@ -62,7 +62,7 @@ const Calendar: React.FC<CalendarComponentInterface> = ({taskData, editTask}) =>
     }
 
     for (let task of taskData) {
-        for (let hour of task.hours) {
+        for (let hour = task.hours[0]; hour < task.hours[1]; hour++) {
             weekData[task.day][hour].task = task.name
             weekData[task.day][hour].change = () => editTask(task.id)
             

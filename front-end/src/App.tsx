@@ -5,27 +5,28 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthProvider from './Calendar/AuthProvider'
 import LogoutBtn from './Components/Logout'
 import Calendar from "./Pages/Calendar"
-
+import Backdrop from "./Components/Backdrop"
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const [isBackdropActive, setBackdropActive] = useState(false)
   return (
     <div className="App">
+      {isBackdropActive && <Backdrop cancel={() => setBackdropActive(false)} />}
       <AuthProvider>
+        <>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={
               <>
-                <Calendar />
+                <Calendar isBackdropActive={isBackdropActive} activateBackdrop={() => setBackdropActive(true)}/>
                 <LogoutBtn />
               </>
             } />
 
           </Routes>
         </BrowserRouter>
-        
-        <></>
+        </>
       </AuthProvider>
     </div>
   )
