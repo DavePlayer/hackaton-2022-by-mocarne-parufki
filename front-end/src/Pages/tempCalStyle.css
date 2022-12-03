@@ -2,8 +2,8 @@
     margin: 0 0 auto 0;
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
 }
+
 .SidePanelLeft {
     min-width: 17.5rem;
     padding: 2rem;
