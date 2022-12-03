@@ -5,6 +5,7 @@ import DatePicker from "react-date-picker"
 import { Task } from "../commonTypes/ServerTypes" 
 interface CustomizeTaskInterface {
     taskId: string
+    setBackdropActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 import {useQuery, gql, useMutation} from "@apollo/client"
 
@@ -19,7 +20,7 @@ mutation MutTask($mutTaskId: ID!, $task: taskInp!) {
 `
 
 import {taskQuery1} from "../Queries/Graphql"
-const CustomizeTask: React.FC<CustomizeTaskInterface> = ({taskId}) => {
+const CustomizeTask: React.FC<CustomizeTaskInterface> = ({taskId, setBackdropActive}) => {
     const taskData = useQuery<{task: Task}>(taskQuery1, {variables: {taskId: taskId}})
     const data = taskData.data?.task
     console.log(taskId, taskData)
@@ -39,7 +40,9 @@ const CustomizeTask: React.FC<CustomizeTaskInterface> = ({taskId}) => {
         const newHour = input2Ref.current?.value
         newHour && d.setHours(parseInt(newHour))
         const timeShouldTake = input3Ref.current?.value
-
+        console.log("starting mutation and backdrop false")
+        setBackdropActive(false)
+        
         mutationFunction({variables: {
             mutTaskId: taskId, 
             task: {
@@ -67,7 +70,7 @@ const CustomizeTask: React.FC<CustomizeTaskInterface> = ({taskId}) => {
                     </tr>
                 </tr>
                 <button>unassign</button>
-                <button onClick={sendMutation}>save</button>
+                <button onClick={() => sendMutation()}>save</button>
             </table>
         </div>
     )

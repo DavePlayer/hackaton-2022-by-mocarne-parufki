@@ -15,12 +15,13 @@ import { Projekt } from "../commonTypes/ServerTypes"
 interface CalendarPageInterface {
     activateBackdrop: () => void
     isBackdropActive: boolean
+    setBackdropActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 import {useQuery, gql} from "@apollo/client"
 
 import { Task, workerData } from "../commonTypes/ServerTypes"
 import { workerQuery } from "../Queries/Graphql"
-const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activateBackdrop}) => {
+const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activateBackdrop, setBackdropActive}) => {
     const [cookies] = useCookies()
     const workerId = cookies["jwt"]
     if(!cookies["jwt"]) {
@@ -41,7 +42,7 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
         <>
             {isBackdropActive && customized && 
                 <FloatingContainer>
-                    <CustomizeTask taskId={customized} />
+                    <CustomizeTask setBackdropActive={setBackdropActive} taskId={customized} />
                 </FloatingContainer>
             }
             <div className={"CalendarPageContainer"}>
