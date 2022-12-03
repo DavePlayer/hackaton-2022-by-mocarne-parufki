@@ -1,5 +1,7 @@
 import { useRef } from "react"
 import { useCookies } from "react-cookie"
+import useJWTStore from "../Store/JWTStore"
+import "../../static/Login.css"
 import useUserId from "../Store/userStore"
 
 const LoginPage: React.FC<{}> = () => {
@@ -17,15 +19,14 @@ const LoginPage: React.FC<{}> = () => {
         }
     }
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column"
-        }}>
-            login:
-            <input ref={inputFormRef}></input>
-            password:
-            <input ref={passwdFormRef}></input>
-            <button onClick={sendAuthRequest}>submit</button>
+        <div className="form">
+            <img src="../../static/logo.png" className="loginlogo"/>
+            <p className="projectname">Taskmaster</p>
+            <p className="fieldname">Login:</p>
+            <input ref={inputFormRef} className="login_input"></input>
+            <p className="fieldname">Password:</p>
+            <input ref={passwdFormRef} className="login_input" type="password"></input>
+            <button onClick={sendAuthRequest} className="submit_button">submit</button>
         </div>
     )
 }
