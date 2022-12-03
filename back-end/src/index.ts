@@ -8,11 +8,14 @@ import express from 'express'
 import jwt from "jsonwebtoken"
 import { MongoClient } from 'mongodb';
 import { workerInterface } from './resolvers/workersResolver';
+import cors from 'cors'
 
 const authApp = express();
 authApp.use(express.json())
+authApp.use(cors())
 
 authApp.get("/get-token", async (req: express.Request, res: express.Response) => {
+  res.header('Access-Control-Allow-Origin', '*');
   console.log(req.headers)
   const dataJSON = req.headers.authorization
   if(dataJSON == undefined ) res.status(400).send("no data parsed")
@@ -39,8 +42,9 @@ authApp.get("/get-token", async (req: express.Request, res: express.Response) =>
               throw new Error(`aha xd`);
           } else {
               const resultsdata: unknown = await results.toArray();
-              if ((resultsdata as Array<workerInterface>).length == 0) return res.status(401)
-              res.json({token: jwt.sign((resultsdata as Array<workerInterface>)[0].id, process.env.SECRET || "DUNNO")})
+              if ((resultsdata as Array<workerInterface>).length == 0) res.json({err: "no user in db"})
+              console.log("got user authenticated from db: ", resultsdata);
+              res.json({token: jwt.sign((resultsdata as Array<workerInterface>)[0].id, process.env.SECRET || "DUNNO"), id: (resultsdata as Array<workerInterface>)[0].id})
           }
       } catch (error) {
           throw error;

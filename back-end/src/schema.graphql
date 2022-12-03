@@ -45,6 +45,7 @@
     TimeItTook: String
     private: Boolean
     IsPermanent: Boolean
+    shouldTake: Int
   }
   type project {
     id: ID!
