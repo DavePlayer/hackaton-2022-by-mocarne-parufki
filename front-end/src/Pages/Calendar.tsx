@@ -1,11 +1,13 @@
 import Calendar from "../Components/Calendar"
-import Backdrop from "../Components/Backdrop"
 import { useState, useEffect } from "react"
 
+import { CompletedTasks } from '../Components/CompletedTasks'
+import { Header } from "../Components/Header"
 import { FloatingContainer } from "../Components/FloatingContainer"
 import CustomizeTask from "../Components/CustomizeTask"
 import { TaskData } from "../commonTypes/Tasks"
 import "./tempCalStyle.css"
+import { Aside } from '../Components/Aside'
 import UnassignedTaskList from "../Components/UnassignedTasks"
 
 interface CalendarPageInterface {
@@ -42,15 +44,16 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
             }
             <div className={"CalendarPageContainer"}>
                 <div className={"topPanel"}>
-                    jdjd
+                    <Header></Header>  
                 </div>
                 <div className={"midPanel"}>
                     <div className={"SidePanel"}>
+                        <Aside></Aside>
                         <UnassignedTaskList tasks={unassignedTasks} editTask={(taskId: string) => editTask(taskId)}/>
                     </div>
                     <Calendar taskData={tasks} editTask={(taskId: string) => editTask(taskId)}/>
                     <div className={"SidePanel"}>
-                        jdjd
+                        <CompletedTasks />
                     </div>
                 </div>
             </div>

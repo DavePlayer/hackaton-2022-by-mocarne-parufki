@@ -1,12 +1,9 @@
-import { Header } from "./components/Header"
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthProvider from './Calendar/AuthProvider'
 import LogoutBtn from './Components/Logout'
 import Calendar from "./Pages/Calendar"
 import Backdrop from "./Components/Backdrop"
-import { Aside } from './components/Aside'
-import { CompletedTasks } from './components/CompletedTasks'
 import {useState} from "react"
 
 const App:React.FC = () =>  {  
