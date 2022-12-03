@@ -13,7 +13,7 @@
 .SidePanelRight {
     min-width: 8rem;
     padding: 2rem;
-    background-color: grey;
+    background-color: transparent;
     max-height: 100vh;
    /*margin-left: 10%;*/
 }
@@ -26,4 +26,5 @@
 }
 .SidePanelExpanded {
     width: 300px;
+    background-color: grey;
 }

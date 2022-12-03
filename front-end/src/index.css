@@ -157,7 +157,14 @@ select, select:target, select:after{
   font-weight: bold;
 }
 
-.logoucik:hover {
+.hidebutton{
+  background-color: #484b4e;
+  color: rgb(218, 214, 208);
+  font-weight: bold;
+  border: 0px;
+}
+
+.logoucik:hover, .hidebutton:hover {
   background-color: #b7b4b1;
   color: #25292f;
   border: 2px black solid;

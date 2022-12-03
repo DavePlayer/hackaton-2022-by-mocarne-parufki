@@ -11,8 +11,8 @@ export const CompletedTasks: React.FC<CompletedTasksInterface> = ({toggle}) => {
                 <button 
                     type="button" 
                     onClick={toggle} 
-                    className='btn btn-primary'>
-                        Hide
+                    className='hidebutton'>
+                        Zakończone
                     </button>  
 
             </div>
