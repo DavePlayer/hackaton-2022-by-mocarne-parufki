@@ -1,32 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import React from 'react'
+import { Header } from "./components/Header"
 import './App.css'
+import { Aside } from './components/Aside'
+import { CompletedTasks } from './components/CompletedTasks'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
+const App:React.FC = () =>  {
+   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Krzyś
-      </p>
+      <Header />
+      
+      <main className="container-fluid columns-bottom d-inline-flex">
+        <div className="row main-container">
+          <Aside />
+
+          <div className="col-6 m-col">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac eros a purus condimentum elementum ut eget nunc. Suspendisse blandit dui vel est rhoncus, a vestibulum ex porta. Cras congue elit ultricies metus imperdiet convallis. Curabitur massa ligula, pellentesque vitae rhoncus at, auctor et est. Duis et pharetra ex. Phasellus interdum mauris ac turpis consequat, sed rhoncus massa faucibus. In hac habitasse platea dictumst. Phasellus sit amet augue magna.
+          </div>
+
+          <CompletedTasks />
+
+        </div>
+      </main>
+
     </div>
   )
 }
