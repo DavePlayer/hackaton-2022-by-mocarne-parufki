@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 $textcolor:rgb(218, 214, 208);
 $inputbackground: #484b4e;
 $margin: 2%;
@@ -32,13 +32,14 @@ body, html{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: $margin;
-    font-size: 26px;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-family: 'Zen Dots', cursive;
 }
 
 
 .fieldname{
     margin-top: $margin;
+    font-size: 18px;
 }
 
 .login_input{
