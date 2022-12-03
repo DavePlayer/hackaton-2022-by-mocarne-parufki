@@ -1,6 +1,6 @@
 import {groups, groupsWorkers, GroupInterface, group} from "./groupResolver"
 import { project, projectInterface, projects, projectsByIDArray } from "./projectsResolver";
-import { task, tasks, taskByWorkerId, tasksByIdArray, updateTaskById } from "./tasksResolver";
+import { task, tasks, taskByWorkerId, tasksByIdArray, updateTaskById, taskById } from "./tasksResolver";
 import {workers, worker, workerInterface} from "./workersResolver"
 
 export const resolver = {
@@ -12,13 +12,22 @@ export const resolver = {
         },
         workers,
         worker: async (parent:any, args: {id: String}) => {
+            console.log("query worker by id: ", args)
             return await worker(args);
         },
-        tasks: async (parent: any, args: {workerId: String}) => {
+        tasks: async (parent: any, args: {id: String}) => {
             console.log(args)
-            if(args.workerId == undefined) return await tasks()
-            return taskByWorkerId(args.workerId);
+            if(args.id == undefined) return await tasks()
+            return taskByWorkerId(args.id);
         },
+        task: async (parent: any, args: {id: String}) => {
+            console.log(args)
+            if(args.id == undefined) return await tasks()
+            const taskk = await taskById(args.id);
+            console.log("taskkk", taskk);
+            return  taskk
+        },
+
         projects,
         project: async (parent: any, args: {id: String}) => {
             console.log(args)

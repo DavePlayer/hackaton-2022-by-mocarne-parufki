@@ -10,17 +10,20 @@ import { MongoClient } from 'mongodb';
 import { workerInterface } from './resolvers/workersResolver';
 
 const authApp = express();
-authApp.use(express.json)
+authApp.use(express.json())
 
 authApp.get("/get-token", async (req: express.Request, res: express.Response) => {
+  console.log(req.headers)
   const dataJSON = req.headers.authorization
-  if(dataJSON == undefined ) return res.status(400)
-  const data = JSON.parse(dataJSON)
-  if(data == undefined || data == null) return res.status(400)
-  if(data.login == undefined || data.password == undefined || data.login == null || data.password == null) return res.status(400)
+  if(dataJSON == undefined ) res.status(400).send("no data parsed")
+  console.log(dataJSON)
+  const data = JSON.parse(dataJSON!)
+  if(data == undefined || data == null)  res.status(400).send("invalid data format")
+  if(data.login == undefined || data.password == undefined || data.login == null || data.password == null) res.send("not so easy hacky boy ")
+  console.log()
 
 
-  const mongolink = process.env.mongolink || null;
+  const mongolink = process.env.MONGOLINK || null;
   console.log("connecting to db");
   if (mongolink) {
       const client = new MongoClient(mongolink);
@@ -31,13 +34,13 @@ authApp.get("/get-token", async (req: express.Request, res: express.Response) =>
           console.error(`database: \n${err}`);
       }
       try {
-          const results = await client!.db("data").collection("tasks").find({login: data.login, password: data.password});
+          const results = await client!.db("data").collection("users").find({login: data.login, password: data.password});
           if (results == null) {
               throw new Error(`aha xd`);
           } else {
               const resultsdata: unknown = await results.toArray();
               if ((resultsdata as Array<workerInterface>).length == 0) return res.status(401)
-              else return jwt.sign((resultsdata as Array<workerInterface>)[0], process.env.SECRET || "DUNNO")
+              res.json({token: jwt.sign((resultsdata as Array<workerInterface>)[0].id, process.env.SECRET || "DUNNO")})
           }
       } catch (error) {
           throw error;
@@ -48,16 +51,20 @@ authApp.get("/get-token", async (req: express.Request, res: express.Response) =>
 })
 
 authApp.get("/auth", async (req: express.Request, res: express.Response) => {
+  console.log(req.headers)
   const dataJSON = req.headers.authorization
-  if(dataJSON == undefined ) return res.status(400)
-  const data = JSON.parse(dataJSON)
-  if(data == undefined || data == null) return res.status(400)
-  if(data.login == undefined || data.password == undefined || data.login == null || data.password == null) return res.status(400)
+  if(dataJSON == undefined ) res.status(400).send("no data parsed")
+  console.log(dataJSON)
+  const data = JSON.parse(dataJSON!)
+  if(data == undefined || data == null)  res.status(400).send("invalid data format")
+  if(data.token == null || data.token == undefined) res.send("not so easy hacky boy ")
 
-  const veryfication = jwt.verify(data, process.env.SECRET || "DUNNO");
+  const veryfication = jwt.verify(data.token, process.env.SECRET || "DUNNO");
 
   res.send(veryfication);
 })
+
+authApp.listen(process.env.PORT || 8080, () => console.log(`listening on port ${process.env.PORT || 8080}`))
 
 dotenv.config();
 var schema = buildSchema(fs.readFileSync("src/schema.graphql").toString('utf-8'));

@@ -5,6 +5,7 @@
     workers: [worker]!
     worker(id: ID!): worker!
     tasks(workerId: ID): [task]!
+    task(id: ID!): [task]!
 
     project(id: ID!): project!
     projects: [project]!
@@ -30,7 +31,7 @@
     type: String!
     project: project!
     worker: worker
-    date: Int
+    date: String
     TimeItTook: String
     private: Boolean!
     IsPermanent: Boolean!
@@ -40,7 +41,7 @@
     type: String
     project: String
     worker: String
-    date: Int
+    date: String
     TimeItTook: String
     private: Boolean
     IsPermanent: Boolean
