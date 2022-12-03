@@ -98,3 +98,32 @@ export const tasksByIdArray = async (idArray: Array<String>) => {
         console.log("mongo link not existing")
     }
 }
+
+
+export const updateTaskById = async ({task, id}: {task: task, id: String}) => {
+    const mongoLink = process.env.MONGOLINK || null;
+    console.log("connecting to db");
+    if (mongoLink) {
+        const client = new MongoClient(mongoLink);
+        try {
+            await client.connect();
+            console.log("established connection");
+        } catch (err) {
+            console.error(`Database: \n${err}`);
+        }
+        try {
+            const results = await client!.db("data").collection("tasks").updateOne({id}, {$set: task})
+            if (results == null) {
+                throw new Error(`aha XD`);
+            } else {
+                const resultsData: unknown = await results.modifiedCount
+                if (resultsData == false) throw "no match for specified task id";
+                else return {status: "chyna kurwa ok. nie wiem"};
+            }
+        } catch (error) {
+            throw error;
+        }
+    } else {
+        console.log("mongo link not existing")
+    }
+}

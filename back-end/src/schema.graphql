@@ -9,6 +9,13 @@
     project(id: ID!): project!
     projects: [project]!
   }
+  type Mutation {
+    mutTask(id: ID!, task: taskInp!): changeStatus!
+  }
+  type changeStatus {
+    status: String
+    error: String
+  }
   type worker {
     id: ID!
     role: String!
@@ -27,6 +34,15 @@
     TimeItTook: String
     private: Boolean!
     IsPermanent: Boolean!
+  }
+  input taskInp {
+    type: String
+    project: String
+    worker: String
+    date: String
+    TimeItTook: String
+    private: Boolean
+    IsPermanent: Boolean
   }
   type project {
     id: ID!

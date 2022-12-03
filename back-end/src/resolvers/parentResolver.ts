@@ -1,6 +1,6 @@
 import {groups, groupsWorkers, GroupInterface, group} from "./groupResolver"
 import { project, projectInterface, projects, projectsByIDArray } from "./projectsResolver";
-import { task, tasks, taskByWorkerId, tasksByIdArray } from "./tasksResolver";
+import { task, tasks, taskByWorkerId, tasksByIdArray, updateTaskById } from "./tasksResolver";
 import {workers, worker, workerInterface} from "./workersResolver"
 
 export const resolver = {
@@ -24,6 +24,12 @@ export const resolver = {
             console.log(args)
             return project(args.id);
         },
+    },
+    Mutation: {
+        mutTask: async (parent:any, args: {id: String, task: task}) => {
+            console.log(`editing task: `, args)
+            return await updateTaskById(args)
+        }
     },
     group: {
         workers: async (parent: GroupInterface) => {
