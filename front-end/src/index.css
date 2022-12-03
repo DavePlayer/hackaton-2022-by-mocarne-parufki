@@ -36,18 +36,6 @@ html, body{
   height: 100vh;
 }
 
-.button-hide {
-  position: absolute;
-  top: 100px;
-  right: 170px;
-}
-
-.button-show {
-  position: absolute;
-  left: 90%;
-  top: 10%;
-}
-
 .imie-nazw {
   margin-left: 0;
 }
@@ -141,10 +129,7 @@ select, select:target, select:after{
 }
 
 .r-col {
-  background-color: #0d6efd;
-  width: 10%;
   margin: 0;
-  overflow: hidden;
 }
 
 .logo{

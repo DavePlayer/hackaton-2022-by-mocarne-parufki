@@ -12,6 +12,8 @@ interface HourInterface {
     hourData: HourData
 }
 
+
+
 const Hour: React.FC<HourInterface> = ({hourData}) => {
     const {task, color, change} = hourData
     const style = task ?
@@ -43,15 +45,25 @@ const transposed = (arr: any[][]) => {
     return newArr
 }
 
-import { TaskData } from "../commonTypes/Tasks"
-
 interface CalendarComponentInterface {
-    taskData: TaskData[],
     editTask: (taskId: string) => void
 }
 
 
-const Calendar: React.FC<CalendarComponentInterface> = ({taskData, editTask}) => {
+import {Task, workerData} from "../commonTypes/ServerTypes"
+import {useQuery} from "@apollo/client"
+import {taskQuery2} from "../Queries/Graphql"
+import { workerQuery } from "../Queries/Graphql"
+import {useCookies} from "react-cookie"
+
+const Calendar: React.FC<CalendarComponentInterface> = ({editTask}) => {
+    const [cookies] = useCookies()
+    const workerId = cookies["jwt"]
+    const user = useQuery<{worker: workerData}>(workerQuery, {variables: {id: workerId}})
+    const proj = user.data?.worker.projects || []
+    const taskdata = proj.map(v => v.tasks).flat()
+
+
     const weekData = new Array<HourData[]>(7)
     for(let i = 0; i < 7; i++) {
         weekData[i] = []
@@ -60,11 +72,13 @@ const Calendar: React.FC<CalendarComponentInterface> = ({taskData, editTask}) =>
 
         }
     }
-
-    for (let task of taskData) {
-        for (let hour = task.hours[0]; hour < task.hours[1]; hour++) {
-            weekData[task.day][hour].task = task.name
-            weekData[task.day][hour].change = () => editTask(task.id)
+    for (let task of taskdata) {
+        const date = new Date()
+        const dayOfTheWeek = date.getDay()
+        const start = date.getHours()
+        for (let hour = start; hour < start + task.shouldTake; hour++) {
+            weekData[dayOfTheWeek][hour].task = task.type
+            weekData[dayOfTheWeek][hour].change = () => editTask(task.id)
             
         }
     }

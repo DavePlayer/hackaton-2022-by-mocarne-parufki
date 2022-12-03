@@ -9,21 +9,25 @@ const fakeFetch = () => {
         ] 
 }
 
-const UnassignedTask: React.FC<{task: TaskData, customize: () => void}> = ({task, customize}) => {
+const UnassignedTask: React.FC<{task: Task, customize: () => void}> = ({task, customize}) => {
     return (
         <div 
             onClick={customize}
             style={{background: "red", marginTop: "1rem", cursor: "pointer"}}
         >
-            {task.name}
+            {task.type}
         </div>
     )
 }
+import {Task} from "../commonTypes/ServerTypes"
 
-const UnassignedTaskList: React.FC<{tasks: TaskData[], editTask: (v: string) => void}> = ({tasks, editTask}) => {    
+import {useQuery} from "@apollo/client"
+import {taskQuery2} from "../Queries/Graphql"
+const UnassignedTaskList: React.FC<{editTask: (v: string) => void}> = ({editTask}) => {    
+    const tasks = useQuery<{tasks: Task[]}>(taskQuery2)
     return (
         <>
-        {tasks.map((v) => 
+        {tasks.data?.tasks.filter(v => v.date == null).map((v) => 
             <UnassignedTask task={v} customize={() => editTask(v.id)} />
         )}
         </>

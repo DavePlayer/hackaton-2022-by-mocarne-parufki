@@ -5,27 +5,39 @@ import LogoutBtn from './Components/Logout'
 import Calendar from "./Pages/Calendar"
 import Backdrop from "./Components/Backdrop"
 import {useState} from "react"
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+
+
 
 const App:React.FC = () =>  {  
   const [isBackdropActive, setBackdropActive] = useState(false)
+  const client = new ApolloClient({
+    uri: 'http://192.168.0.109:4000',
+    cache: new InMemoryCache()
+  })
    return (
     <div className="App">
-      {isBackdropActive && <Backdrop cancel={() => setBackdropActive(false)} />}
-      <AuthProvider>
+      <ApolloProvider client={client} >
         <>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Calendar isBackdropActive={isBackdropActive} activateBackdrop={() => setBackdropActive(true)}/>
-                <LogoutBtn />
-              </>
-            } />
+          {isBackdropActive && <Backdrop cancel={() => setBackdropActive(false)} />}
+          <AuthProvider>
+            <>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={
+                  <>
+                    <Calendar isBackdropActive={isBackdropActive} activateBackdrop={() => setBackdropActive(true)}/>
+                    <LogoutBtn />
+                  </>
+                } 
+                />
 
-          </Routes>
-        </BrowserRouter>
+              </Routes>
+            </BrowserRouter>
+            </>
+          </AuthProvider>
         </>
-      </AuthProvider>
+    </ApolloProvider>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import Calendar from "../Components/Calendar"
 import { useState, useEffect } from "react"
+import {useCookies} from "react-cookie"
 
 import { CompletedTasks } from '../Components/CompletedTasks'
 import { Header } from "../Components/Header"
@@ -7,13 +8,15 @@ import { FloatingContainer } from "../Components/FloatingContainer"
 import CustomizeTask from "../Components/CustomizeTask"
 import { TaskData } from "../commonTypes/Tasks"
 import "./tempCalStyle.css"
-import { Aside } from '../Components/Aside'
+import { ProjectSelector } from '../Components/ProjectSelector'
 import UnassignedTaskList from "../Components/UnassignedTasks"
+import { Projekt } from "../commonTypes/ServerTypes"
 
 interface CalendarPageInterface {
     activateBackdrop: () => void
     isBackdropActive: boolean
 }
+import {useQuery, gql} from "@apollo/client"
 
 const fakeFetch = () => {
     return [
@@ -24,36 +27,51 @@ const fakeFetch = () => {
         ] 
 }
 
-const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activateBackdrop}) => {
-    const [tasks, setTasks] = useState<TaskData[]>([])
 
-    const [unassignedTasks, setUnassignedTasks] = useState<TaskData[]>([])
-    useEffect(() => {
-        setTasks(fakeFetch())
-        setUnassignedTasks(fakeFetch())
-    }, [])
-    const [ customized, setCustomized ] = useState<TaskData | null>(null)
+
+import { Task, workerData } from "../commonTypes/ServerTypes"
+import { workerQuery } from "../Queries/Graphql"
+const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activateBackdrop}) => {
+    const [cookies] = useCookies()
+    const workerId = cookies["jwt"]
+    if(!cookies["jwt"]) {
+        return <>err</>
+    }
+    console.log(workerId)
+    const user = useQuery<{worker: workerData}>(workerQuery, {variables: {id: workerId}})
+    const [ customized, setCustomized ] = useState<string | null>(null)
     const editTask = (taskId: string) => {
         activateBackdrop()
-        setCustomized(tasks.find(task => task.id == taskId)!)
+        setCustomized(taskId)
     }
+    const [ sidePanelExpanded, setSidePanelExpanded ] = useState(false)
+
+
+
+    const [projectId, setProjectId] = useState<TaskData[]>([])
+
+    const [ sidePanelProjectId, setSidePanelProjectId ] = useState<string>("") 
     return (
         <>
             {isBackdropActive && customized && 
-                <FloatingContainer><CustomizeTask taskData={customized} /></FloatingContainer>
+                <FloatingContainer>
+                    <CustomizeTask taskId={customized} />
+                </FloatingContainer>
             }
             <div className={"CalendarPageContainer"}>
                 <div className={"topPanel"}>
-                    <Header></Header>  
+                    <Header ></Header>  
                 </div>
                 <div className={"midPanel"}>
                     <div className={"SidePanel"}>
-                        <Aside></Aside>
-                        <UnassignedTaskList tasks={unassignedTasks} editTask={(taskId: string) => editTask(taskId)}/>
+                        <ProjectSelector setProject={(s: string) => setSidePanelProjectId(s)} />
+                        <UnassignedTaskList 
+                            editTask={(taskId: string) => editTask(taskId)}
+                        />
                     </div>
-                    <Calendar taskData={tasks} editTask={(taskId: string) => editTask(taskId)}/>
-                    <div className={"SidePanel"}>
-                        <CompletedTasks />
+                    <Calendar editTask={(taskId: string) => editTask(taskId)}/>
+                    <div className={["SidePanel", sidePanelExpanded ? "SidePanelExpanded" : ""].join(" ")}>
+                        <CompletedTasks toggle={() => setSidePanelExpanded(v => !v)}/>
                     </div>
                 </div>
             </div>
