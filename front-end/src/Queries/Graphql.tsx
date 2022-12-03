@@ -47,6 +47,9 @@ query getWorker($id: ID!) {
         shouldTake
         type
         private
+        worker {
+          id
+        }
       }
       name
       id

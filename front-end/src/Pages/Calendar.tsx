@@ -2,8 +2,8 @@ import Calendar from "../Components/Calendar"
 import { useState, useEffect } from "react"
 import {useCookies} from "react-cookie"
 
-import { CompletedTasks } from '../components/CompletedTasks'
-import { Header } from "../components/Header"
+import { CompletedTasks } from '../Components/CompletedTasks'
+import { Header } from "../Components/Header"
 import { FloatingContainer } from "../Components/FloatingContainer"
 import CustomizeTask from "../Components/CustomizeTask"
 import { TaskData } from "../commonTypes/Tasks"
@@ -37,7 +37,6 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
     const [ sidePanelExpanded, setSidePanelExpanded ] = useState(false)
 
     const isAdmin = user.data?.worker.role == "Admin"
-    const [ sidePanelProjectId, setSidePanelProjectId ] = useState<string>("") 
     return (
         <>
             {isBackdropActive && customized && 
@@ -51,7 +50,7 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
                 </div>
                 <div className={"midPanel"}>
                     <div className={"SidePanelLeft"}>
-                        <ProjectSelector setProject={(s: string) => setSidePanelProjectId(s)} />
+                        <ProjectSelector />
                         <UnassignedTaskList 
                             isAdmin={isAdmin}
                             editTask={(taskId: string) => editTask(taskId)}

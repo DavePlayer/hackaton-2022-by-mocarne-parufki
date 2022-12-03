@@ -37,3 +37,16 @@
     border: 1px solid black;
     border-radius: 10px;
 }
+
+
+.unasigned-tasks {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.unasigned-task {
+  flex-basis: 100%;
+  font-size: 1rem;
+  margin-top: 1rem;
+}

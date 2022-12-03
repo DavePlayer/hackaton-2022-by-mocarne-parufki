@@ -6,6 +6,7 @@ import Calendar from "./Pages/Calendar"
 import Backdrop from "./Components/Backdrop"
 import {useState} from "react"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+import "./App.css"
 
 
 

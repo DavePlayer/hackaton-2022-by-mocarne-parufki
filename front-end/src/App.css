@@ -1,0 +1,43 @@
+
+.unasigned-tasks {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.unsigned-task {
+  flex-basis: 100%;
+  font-size: 1rem;
+  margin-top: 1rem;
+  background: rgba(6, 6, 6, 0.1);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(1, 1, 1, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.wrapper .wrapper-editor {
+    width: 50vw;
+    height: 60vh;
+    background-color: #242629;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.wrapper .wrapper-editor *{
+    display: block;
+    text-align: center;
+    border-radius: 0.5rem;
+}

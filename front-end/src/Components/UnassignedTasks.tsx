@@ -1,13 +1,3 @@
-import { useEffect, useState } from "react"
-import { TaskData } from "../commonTypes/Tasks"
-const fakeFetch = () => {
-    return [
-            {id: "jdjd", projectId: "k2", name: "task1", day: 2, hours: [8, 10], fulldate: ""},
-            {id: "djdj", projectId: "k2", name: "task2", day: 3, hours: [14, 20], fulldate: ""},
-            {id: "djd", projectId: "k2", name: "task2", day: 1, hours: [14, 20], fulldate: ""},
-            {id: "djd", projectId: "k2", name: "task2", day: 1, hours: [4, 6], fulldate: ""},
-        ] 
-}
 
 const UnassignedTask: React.FC<{task: Task, customize: () => void}> = ({task, customize}) => {
     return (
