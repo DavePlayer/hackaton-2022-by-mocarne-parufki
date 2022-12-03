@@ -146,8 +146,8 @@ select, select:target, select:after{
 
 .logoucik {
   position: absolute;
-  top: 2%;
-  left: 10%;
+  top: 0.75%;
+  left: 0.125%;
   margin-top: 2%;
   width: 8%;
   margin-left: auto;
