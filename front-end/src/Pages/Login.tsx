@@ -22,8 +22,12 @@ const LoginPage: React.FC<{}> = () => {
                     })
                 })
                 const response = await jwt.json()
-                console.log(response)
-                setCookie("jwt", response.id)
+                if(!response.err) {
+                    console.log(response)
+                    setCookie("jwt", response.id)
+                } else {
+                    alert("incorect login credentials", response.err)
+                }
             } catch(err) {
                 console.log(err)
             }
