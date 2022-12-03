@@ -64,7 +64,6 @@ const Calendar: React.FC<CalendarComponentInterface> = ({editTask}) => {
     const proj = user.data?.worker.projects || []
     const taskdata = proj.map(v => v.tasks).flat()
 
-
     const weekData = new Array<HourData[]>(7)
     for(let i = 0; i < 7; i++) {
         weekData[i] = []
@@ -73,14 +72,15 @@ const Calendar: React.FC<CalendarComponentInterface> = ({editTask}) => {
 
         }
     }
+    console.log("jd", proj)
     for (let task of taskdata) {
         const date = new Date(parseInt(task.date))
-        const dayOfTheWeek = date.getDay()
+        const dayOfTheWeek = date.getDay()-1
         const start = date.getHours()
+        console.log(task)
         for (let hour = start; hour < start + task.shouldTake; hour++) {
             weekData[dayOfTheWeek][hour].task = task.type
             weekData[dayOfTheWeek][hour].change = () => editTask(task.id)
-            
         }
     }
     return (
@@ -88,13 +88,13 @@ const Calendar: React.FC<CalendarComponentInterface> = ({editTask}) => {
             <table style={{borderSpacing: "0"}}>
                 <thead>
                     <tr>
-                        <th>monday</th>
-                        <th>tuesday</th>
-                        <th>wednesday</th>
-                        <th>thrusday</th>
-                        <th>friday</th>
-                        <th>saturday</th>
-                        <th>sunday</th>
+                        <th>Poniedziałek</th>
+                        <th>Wtorek</th>
+                        <th>Środa</th>
+                        <th>Czwartek</th>
+                        <th>Piątek</th>
+                        <th>Sobota</th>
+                        <th>Niedziela</th>
                     </tr>
                 </thead>
                 <tbody style={{}}>

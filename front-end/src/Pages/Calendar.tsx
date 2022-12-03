@@ -35,8 +35,6 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
     }
     const [ sidePanelExpanded, setSidePanelExpanded ] = useState(false)
 
-       
-
     const isAdmin = user.data?.worker.role == "Admin"
     const [ sidePanelProjectId, setSidePanelProjectId ] = useState<string>("") 
     return (
@@ -48,10 +46,10 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
             }
             <div className={"CalendarPageContainer"}>
                 <div className={"topPanel"}>
-                    <Header ></Header>  
+                    <Header ></Header>
                 </div>
                 <div className={"midPanel"}>
-                    <div className={"SidePanel"}>
+                    <div className={"SidePanelLeft"}>
                         <ProjectSelector setProject={(s: string) => setSidePanelProjectId(s)} />
                         <UnassignedTaskList 
                             isAdmin={isAdmin}
@@ -59,7 +57,7 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
                         />
                     </div>
                     <Calendar editTask={(taskId: string) => editTask(taskId)}/>
-                    <div className={["SidePanel", sidePanelExpanded ? "SidePanelExpanded" : ""].join(" ")}>
+                    <div className={["SidePanelRight", sidePanelExpanded ? "SidePanelExpanded" : ""].join(" ")}>
                         <CompletedTasks toggle={() => setSidePanelExpanded(v => !v)}/>
                     </div>
                 </div>
