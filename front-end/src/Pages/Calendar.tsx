@@ -18,17 +18,6 @@ interface CalendarPageInterface {
 }
 import {useQuery, gql} from "@apollo/client"
 
-const fakeFetch = () => {
-    return [
-            {id: "jdjd", projectId: "k2", name: "task1", day: 2, hours: [8, 10], fulldate: ""},
-            {id: "djdj", projectId: "k2", name: "task2", day: 3, hours: [14, 20], fulldate: ""},
-            {id: "djd", projectId: "k2", name: "task2", day: 1, hours: [14, 20], fulldate: ""},
-            {id: "djd", projectId: "k2", name: "task2", day: 1, hours: [4, 6], fulldate: ""},
-        ] 
-}
-
-
-
 import { Task, workerData } from "../commonTypes/ServerTypes"
 import { workerQuery } from "../Queries/Graphql"
 const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activateBackdrop}) => {
@@ -48,7 +37,6 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
 
        
 
-    const [projectId, setProjectId] = useState<TaskData[]>([])
     const isAdmin = user.data?.worker.role == "Admin"
     const [ sidePanelProjectId, setSidePanelProjectId ] = useState<string>("") 
     return (
