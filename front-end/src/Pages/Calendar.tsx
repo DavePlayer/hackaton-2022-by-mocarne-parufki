@@ -2,8 +2,8 @@ import Calendar from "../Components/Calendar"
 import { useState, useEffect } from "react"
 import {useCookies} from "react-cookie"
 
-import { CompletedTasks } from '../components/CompletedTasks'
-import { Header } from "../components/Header"
+import { CompletedTasks } from '../Components/CompletedTasks'
+import { Header } from "../Components/Header"
 import { FloatingContainer } from "../Components/FloatingContainer"
 import CustomizeTask from "../Components/CustomizeTask"
 import { TaskData } from "../commonTypes/Tasks"
