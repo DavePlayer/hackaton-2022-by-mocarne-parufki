@@ -25,7 +25,7 @@ export const resolver = {
             if(args.id == undefined) return await tasks()
             const taskk = await taskById(args.id);
             console.log("taskkk", taskk);
-            return  taskk
+            return  taskk![0]
         },
 
         projects,
