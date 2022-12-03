@@ -46,10 +46,10 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
     }
     const [ sidePanelExpanded, setSidePanelExpanded ] = useState(false)
 
-
+       
 
     const [projectId, setProjectId] = useState<TaskData[]>([])
-
+    const isAdmin = user.data?.worker.role == "Admin"
     const [ sidePanelProjectId, setSidePanelProjectId ] = useState<string>("") 
     return (
         <>
@@ -66,6 +66,7 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
                     <div className={"SidePanel"}>
                         <ProjectSelector setProject={(s: string) => setSidePanelProjectId(s)} />
                         <UnassignedTaskList 
+                            isAdmin={isAdmin}
                             editTask={(taskId: string) => editTask(taskId)}
                         />
                     </div>

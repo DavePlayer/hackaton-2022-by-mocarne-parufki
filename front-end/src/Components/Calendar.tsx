@@ -59,6 +59,7 @@ import {useCookies} from "react-cookie"
 const Calendar: React.FC<CalendarComponentInterface> = ({editTask}) => {
     const [cookies] = useCookies()
     const workerId = cookies["jwt"]
+    console.log(workerId)
     const user = useQuery<{worker: workerData}>(workerQuery, {variables: {id: workerId}})
     const proj = user.data?.worker.projects || []
     const taskdata = proj.map(v => v.tasks).flat()

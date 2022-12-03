@@ -68,4 +68,5 @@ export type workerData = {
     id: string,
     lastName: string,
     projects: Projekt[]
+    role: string
 }

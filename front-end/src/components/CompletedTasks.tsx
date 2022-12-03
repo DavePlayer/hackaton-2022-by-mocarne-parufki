@@ -5,15 +5,12 @@ interface CompletedTasksInterface {
 }
 
 export const CompletedTasks: React.FC<CompletedTasksInterface> = ({toggle}) => {
-    const handleBtn = () => {
-        toggle()
-    }
     return (
         <>
             <div className="col r-col relative" id="collapseWidthExample">
                 <button 
                     type="button" 
-                    onClick={handleBtn} 
+                    onClick={toggle} 
                     className='btn btn-primary'>
                         Hide
                     </button>  
