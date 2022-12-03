@@ -8,7 +8,7 @@ const LogoutBtn = () => {
         removeCookie("jwt")
         removeLocalJWT()
     }
-    return <button onClick={logoutHandler}>Logout</button>
+    return <button className="logoucik" onClick={logoutHandler}>Logout</button>
 }
 
 export default LogoutBtn

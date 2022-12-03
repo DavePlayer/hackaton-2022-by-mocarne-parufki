@@ -26,8 +26,8 @@ const App:React.FC = () =>  {
               <Routes>
                 <Route path="/" element={
                   <>
-                    <Calendar isBackdropActive={isBackdropActive} activateBackdrop={() => setBackdropActive(true)}/>
                     <LogoutBtn />
+                    <Calendar isBackdropActive={isBackdropActive} activateBackdrop={() => setBackdropActive(true)}/>
                   </>
                 } 
                 />

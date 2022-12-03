@@ -13,7 +13,7 @@ const UnassignedTask: React.FC<{task: Task, customize: () => void}> = ({task, cu
     return (
         <div 
             onClick={customize}
-            style={{background: "red", marginTop: "1rem", cursor: "pointer"}}
+            style={{background: "#495057;", marginTop: "1rem", cursor: "pointer"}}
         >
             {task.type}
         </div>

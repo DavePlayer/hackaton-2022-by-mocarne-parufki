@@ -20,13 +20,13 @@ const LoginPage: React.FC<{}> = () => {
     }
     return (
         <div className="form">
-            <img src="../../static/logo.png" className="loginlogo"/>
-            <p className="projectname">Taskmaster</p>
-            <p className="fieldname">Login:</p>
-            <input ref={inputFormRef} className="login_input"></input>
-            <p className="fieldname">Password:</p>
+            <img src="../../static/logo.png" className="loginlogo noselect"/>
+            <p className="projectname noselect">Taskmaster</p>
+            <p className="fieldname noselect">Login:</p>
+            <input ref={inputFormRef} className="login_input" autoFocus></input>
+            <p className="fieldname noselect">Password:</p>
             <input ref={passwdFormRef} className="login_input" type="password"></input>
-            <button onClick={sendAuthRequest} className="submit_button">submit</button>
+            <button onClick={sendAuthRequest} className="submit_button noselect">submit</button>
         </div>
     )
 }

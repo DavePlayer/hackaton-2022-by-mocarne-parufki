@@ -27,13 +27,17 @@ html, body{
 }
 
 .navbar {
-  background-color: #212529;
+  background-color: #000000;
   margin: 0;
   padding: 0;
 }
 
 .main-container {
   height: 100vh;
+}
+
+th {
+  text-align: center;
 }
 
 .imie-nazw {
@@ -78,6 +82,14 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.button-hide {
+  background-color: #6c757d;
+}
+button:focus,
+button:focus-visible {
+  outline: 2px auto;
 }
 
 @media (prefers-color-scheme: light) {
@@ -132,8 +144,37 @@ select, select:target, select:after{
   margin: 0;
 }
 
+.logoucik {
+  position: absolute;
+  top: 2%;
+  left: 10%;
+  margin-top: 2%;
+  width: 8%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #484b4e;
+  color: rgb(218, 214, 208);
+  font-weight: bold;
+}
+
+.logoucik:hover {
+  background-color: #b7b4b1;
+  color: #25292f;
+  border: 2px black solid;
+}
+
 .logo{
   width: 2.5%;
   height: 2.5%;
   margin: 0.5%;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
