@@ -8,6 +8,8 @@ export interface workerInterface {
     projects: Array<String>,
     assignedTasks: Array<String>,
     group: String,
+    login: String,
+    password: String
 }
 
 export const workers = async () => {

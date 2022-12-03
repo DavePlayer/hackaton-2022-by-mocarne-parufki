@@ -30,16 +30,17 @@
     type: String!
     project: project!
     worker: worker
-    date: String!
+    date: Int
     TimeItTook: String
     private: Boolean!
     IsPermanent: Boolean!
+    shouldTake: Int!
   }
   input taskInp {
     type: String
     project: String
     worker: String
-    date: String
+    date: Int
     TimeItTook: String
     private: Boolean
     IsPermanent: Boolean

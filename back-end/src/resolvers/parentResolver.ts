@@ -64,7 +64,17 @@ export const resolver = {
                 const workers = await worker({id})
                 return workers
             }
-        }
+        },
+        project: async (parent: task) => {
+            const id = parent.project
+            console.log("searching for project: ", parent)
+            if(id == null) return null
+            else {
+                const ans = await project(parent.project);
+                console.log("found project: ", ans);
+                return ans![0]
+            }
+        },
     },
     project: {
         tasks: async (parent: projectInterface) => {
