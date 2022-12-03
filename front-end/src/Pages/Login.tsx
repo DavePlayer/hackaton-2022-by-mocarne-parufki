@@ -9,13 +9,24 @@ const LoginPage: React.FC<{}> = () => {
     const passwdFormRef = useRef<HTMLInputElement>(null)
     const [cookies, setCookie, removeCookie] = useCookies()
     const setUserId = useUserId(state => state.setuserId)
-    const sendAuthRequest = () => {
+    const sendAuthRequest = async () => {
         if(inputFormRef.current && passwdFormRef.current) {
             const data = {login: inputFormRef.current.value, password: passwdFormRef.current.value}
             console.log(data)
             //simulating response
-            const response = "JDJDJD"
-            setCookie("jwt", "7ee0d5a0-9c2b-40b2-b1bb-55c79a08b451")
+            try {
+                const jwt = await fetch("http://192.168.0.109:8080/get-token", {
+                    headers: new Headers({
+                        'Authorization': JSON.stringify(data), 
+                        'Content-Type': 'application/json'
+                    })
+                })
+                const response = await jwt.json()
+                console.log(response)
+                setCookie("jwt", response.id)
+            } catch(err) {
+                console.log(err)
+            }
         }
     }
     return (
