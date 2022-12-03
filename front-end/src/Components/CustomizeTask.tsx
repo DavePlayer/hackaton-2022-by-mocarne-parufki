@@ -40,8 +40,6 @@ const CustomizeTask: React.FC<CustomizeTaskInterface> = ({taskId}) => {
         newHour && d.setHours(parseInt(newHour))
         const timeShouldTake = input3Ref.current?.value
 
-         
-
         mutationFunction({variables: {
             mutTaskId: taskId, 
             task: {

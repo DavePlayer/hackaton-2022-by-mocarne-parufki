@@ -46,9 +46,6 @@ const CalendarPage: React.FC<CalendarPageInterface> = ({isBackdropActive, activa
     }
     const [ sidePanelExpanded, setSidePanelExpanded ] = useState(false)
 
-       
-
-    const [projectId, setProjectId] = useState<TaskData[]>([])
     const isAdmin = user.data?.worker.role == "Admin"
     const [ sidePanelProjectId, setSidePanelProjectId ] = useState<string>("") 
     return (
