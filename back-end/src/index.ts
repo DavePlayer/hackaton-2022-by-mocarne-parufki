@@ -1,35 +1,20 @@
-import express from 'express'
 import dotenv from 'dotenv'
-const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 import fs from 'fs';
+import {resolver} from "./resolvers/parentResolver"
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+
+
 
 dotenv.config();
-
-
-const app = express();
-app.use(express.json());
 var schema = buildSchema(fs.readFileSync("src/schema.graphql").toString('utf-8'));
 
-const resolvers = {
-    hello: () => "hello world",
-    developers: () => [{
-    id: "123",
-    userName: "test username",
-    lastName: "test last"
-    }]
-}
+const server = new ApolloServer({
+  typeDefs: schema,
+  resolvers: resolver,
+});
 
-
-app.get("/", (req: express.Request, res: express.Response) => {
-    res.json({status: "działa"})
+startStandaloneServer(server).then(url => {
+  console.log(`🚀 Server ready at`, url);
 })
-
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: resolvers,
-  graphiql: true,
-}));
-
-
-app.listen(process.env.PORT || 9999, () => console.log(`listening on port: ${process.env.PORT || 9999}`))

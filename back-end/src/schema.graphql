@@ -1,29 +1,43 @@
 
   type Query {
-    hello: String
-    developers: [worker]!
+    groups: [group]!
+    group(id: ID!): [group]!
+    workers: [worker]!
+    worker(id: ID!): worker!
+    tasks(workerId: ID): [task]!
+
+    project(id: ID!): project!
+    projects: [project]!
   }
   type worker {
     id: ID!
     role: String!
     userName: String!
     lastName: String!
-    projectTasks: [task]!
+    projects: [project]!
+    Group: group!
     assignedTasks: [task]!
   }
   type task {
     id: ID!
     type: String!
-    projectId: ID!
-    developerId: ID
-    TimeToComplete: String!
+    project: project!
+    worker: worker
+    date: String!
     TimeItTook: String
     private: Boolean!
     IsPermanent: Boolean!
   }
   type project {
     id: ID!
-    tasksId: [task]!
-    group: ID!
+    tasks: [task]!
+    name: String!
+    group: group!
     deadLine: String!
+  }
+  type group {
+    id: ID!
+    name: String
+    workers: [worker]! 
+    projects: [project]!
   }
