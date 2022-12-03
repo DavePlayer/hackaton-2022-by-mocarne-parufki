@@ -6,8 +6,9 @@
     border-top: 0.25px solid darkgrey;
 }
 .calendarContainer {
-    margin: 0 0 0 auto;
+    margin: 0;
     padding-top: 2rem;
-    padding-left: 1rem;
     padding-right: 1rem;
+    margin-left: 6.2rem;
+    margin-right: 5.5rem;
 }
