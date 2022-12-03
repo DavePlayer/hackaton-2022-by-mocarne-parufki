@@ -1,0 +1,61 @@
+
+  type Query {
+    groups: [group]!
+    group(id: ID!): [group]!
+    workers: [worker]!
+    worker(id: ID!): worker!
+    tasks(workerId: ID): [task]!
+    task(id: ID!): task!
+
+    project(id: ID!): project!
+    projects: [project]!
+  }
+  type Mutation {
+    mutTask(id: ID!, task: taskInp!): changeStatus!
+  }
+  type changeStatus {
+    status: String
+    error: String
+  }
+  type worker {
+    id: ID!
+    role: String!
+    userName: String!
+    lastName: String!
+    projects: [project]!
+    Group: group!
+    assignedTasks: [task]!
+  }
+  type task {
+    id: ID!
+    type: String!
+    project: project!
+    worker: worker
+    date: String
+    TimeItTook: String
+    private: Boolean!
+    IsPermanent: Boolean!
+    shouldTake: Int!
+  }
+  input taskInp {
+    type: String
+    project: String
+    worker: String
+    date: String
+    TimeItTook: String
+    private: Boolean
+    IsPermanent: Boolean
+  }
+  type project {
+    id: ID!
+    tasks: [task]!
+    name: String!
+    group: group!
+    deadLine: String!
+  }
+  type group {
+    id: ID!
+    name: String
+    workers: [worker]! 
+    projects: [project]!
+  }
