@@ -1,4 +1,3 @@
-import React from 'react'
 import { Header } from "./components/Header"
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -8,8 +7,10 @@ import Calendar from "./Pages/Calendar"
 import Backdrop from "./Components/Backdrop"
 import { Aside } from './components/Aside'
 import { CompletedTasks } from './components/CompletedTasks'
+import {useState} from "react"
 
-const App:React.FC = () =>  {  const [isBackdropActive, setBackdropActive] = useState(false)
+const App:React.FC = () =>  {  
+  const [isBackdropActive, setBackdropActive] = useState(false)
    return (
     <div className="App">
       {isBackdropActive && <Backdrop cancel={() => setBackdropActive(false)} />}
