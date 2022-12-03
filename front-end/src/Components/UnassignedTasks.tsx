@@ -23,7 +23,7 @@ import {Task} from "../commonTypes/ServerTypes"
 
 import {useQuery} from "@apollo/client"
 import {taskQuery2} from "../Queries/Graphql"
-const UnassignedTaskList: React.FC<{editTask: (v: string) => void}> = ({editTask}) => {    
+const UnassignedTaskList: React.FC<{editTask: (v: string) => void, isAdmin: boolean}> = ({editTask, isAdmin}) => {    
     const tasks = useQuery<{tasks: Task[]}>(taskQuery2)
     return (
         <>

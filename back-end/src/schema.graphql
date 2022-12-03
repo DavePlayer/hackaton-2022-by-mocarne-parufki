@@ -1,18 +1,23 @@
-import {} from "uuid"
 
-/*
-type ID = string;
-type Query = {
+  type Query {
     groups: [group]!
     group(id: ID!): [group]!
     workers: [worker]!
     worker(id: ID!): worker!
     tasks(workerId: ID): [task]!
+    task(id: ID!): task!
 
     project(id: ID!): project!
     projects: [project]!
   }
-  type worker = {
+  type Mutation {
+    mutTask(id: ID!, task: taskInp!): changeStatus!
+  }
+  type changeStatus {
+    status: String
+    error: String
+  }
+  type worker {
     id: ID!
     role: String!
     userName: String!
@@ -21,52 +26,36 @@ type Query = {
     Group: group!
     assignedTasks: [task]!
   }
-  type task = {
+  type task {
     id: ID!
     type: String!
     project: project!
     worker: worker
-    date: String!
+    date: String
     TimeItTook: String
     private: Boolean!
     IsPermanent: Boolean!
+    shouldTake: Int!
   }
-  type project = {
+  input taskInp {
+    type: String
+    project: String
+    worker: String
+    date: String
+    TimeItTook: String
+    private: Boolean
+    IsPermanent: Boolean
+  }
+  type project {
     id: ID!
     tasks: [task]!
     name: String!
     group: group!
     deadLine: String!
   }
-  type group = {
+  type group {
     id: ID!
     name: String
     workers: [worker]! 
     projects: [project]!
   }
-  */
-export type Task = {
-    id: string
-    type: string
-    project: string
-    worker: string
-    date: string
-    TimeItTook: string
-    private: boolean
-    IsPermanent: boolean
-    shouldTake: number
-  }
-
-export type Projekt = {
-    id: string
-    tasks: Task[]
-    name: string
-    group: string
-    deadLine: string
-}
-export type workerData = {
-    id: string,
-    lastName: string,
-    projects: Projekt[]
-    role: string
-}

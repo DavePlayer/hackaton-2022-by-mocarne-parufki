@@ -37,6 +37,7 @@ query getWorker($id: ID!) {
   worker(id: $id) {
     id
     lastName
+    role
     projects {
       tasks { 
         date
