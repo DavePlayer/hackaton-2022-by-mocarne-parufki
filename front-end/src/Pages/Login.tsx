@@ -26,7 +26,7 @@ const LoginPage: React.FC<{}> = () => {
             <input ref={inputFormRef} className="login_input" autoFocus></input>
             <p className="fieldname noselect">Password:</p>
             <input ref={passwdFormRef} className="login_input" type="password"></input>
-            <button onClick={sendAuthRequest} className="submit_button noselect">submit</button>
+            <button onClick={sendAuthRequest} className="submit_button noselect">Submit</button>
         </div>
     )
 }
