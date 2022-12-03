@@ -3,7 +3,7 @@ import {useQuery, gql} from "@apollo/client"
 import { useCookies } from "react-cookie"
 import { workerData } from '../commonTypes/ServerTypes'
 import {taskInterface, WraperForUnsignedTasks} from './wraper/wraperForUnsignedTasks'
-import "./tempSelectorStyle.css"
+// import "./tempSelectorStyle.css"
 import { workerQuery } from '../Queries/Graphql'
 
 export const ProjectSelector: React.FC = () => {
