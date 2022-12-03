@@ -40,7 +40,7 @@ const CustomizeTask: React.FC<CustomizeTaskInterface> = ({taskId}) => {
         const d = new Date(dates)
         console.log(d)
         d.setHours(startHour)
-        mutationFunction({variables: {type: input1Ref.current?.value || "", date: date.toString()}})
+        mutationFunction({variables: {mutTaskId: taskId, task: {type: input1Ref.current?.value || "", date: d.getTime().toString()}}})
     }
     return (
         <div onClick={(e) => {e.stopPropagation()}} className={"CustomizeTaskContainer"} >

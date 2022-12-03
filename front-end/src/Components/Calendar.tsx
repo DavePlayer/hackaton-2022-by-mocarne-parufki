@@ -74,7 +74,7 @@ const Calendar: React.FC<CalendarComponentInterface> = ({editTask}) => {
         }
     }
     for (let task of taskdata) {
-        const date = new Date()
+        const date = new Date(parseInt(task.date))
         const dayOfTheWeek = date.getDay()
         const start = date.getHours()
         for (let hour = start; hour < start + task.shouldTake; hour++) {
